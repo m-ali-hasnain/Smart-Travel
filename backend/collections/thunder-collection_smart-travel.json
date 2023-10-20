@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "smart-travel",
+    "dateExported": "2023-10-19T10:02:19.056Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "9400d867-dfd3-4708-bc22-62c0bffa3c46",
+            "colId": "f7830c67-cb86-4499-a3fe-d2a6ba84302e",
+            "containerId": "",
+            "name": "Stripe Payment",
+            "url": "http://localhost:8080/api/payments/intent",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-10-19T10:01:58.256Z",
+            "modified": "2023-10-19T10:01:58.256Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"packageCharges\": 500\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
