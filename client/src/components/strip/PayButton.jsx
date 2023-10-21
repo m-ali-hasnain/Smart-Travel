@@ -4,13 +4,16 @@ import React from "react";
 const PayButton = () => {
 
   const handleCheckout = () => {
+  console.log("check")
     axios
       .post(`/payments/intent`, {
-        packageCharges:500
+        packageCharges:10
       })
       .then((response) => {
-        if (response.data.url) {
-          window.location.href = response.data.url;
+        console.log("check", response.data)
+        if (response.data) {
+          console.log(response.data)
+          window.location.href = response.data;
         }
       })
       .catch((err) => console.log(err.message));

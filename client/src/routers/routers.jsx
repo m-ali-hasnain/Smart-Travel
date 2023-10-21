@@ -10,6 +10,7 @@ import scrollreveal from "scrollreveal";
 import Home from "../components/home";
 import PackagesDetails from "../components/packageDetail";
 import Contact from "../components/Contact";
+import Admin from "../components/Admin";
 // import Login from "../components/login";
 export default function App() {
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function App() {
     );
   }, []);
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -43,10 +44,11 @@ export default function App() {
         <Route path="/packages/:slug" element={<PackagesDetails />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/admin" element={<Admin />} />
+        
         
 
       </Routes>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }

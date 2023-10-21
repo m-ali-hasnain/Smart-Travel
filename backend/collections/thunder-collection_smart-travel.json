@@ -1,28 +1,47 @@
 {
-    "client": "Thunder Client",
-    "collectionName": "smart-travel",
-    "dateExported": "2023-10-19T10:02:19.056Z",
-    "version": "1.1",
-    "folders": [],
-    "requests": [
-        {
-            "_id": "9400d867-dfd3-4708-bc22-62c0bffa3c46",
-            "colId": "f7830c67-cb86-4499-a3fe-d2a6ba84302e",
-            "containerId": "",
-            "name": "Stripe Payment",
-            "url": "http://localhost:8080/api/payments/intent",
-            "method": "POST",
-            "sortNum": 10000,
-            "created": "2023-10-19T10:01:58.256Z",
-            "modified": "2023-10-19T10:01:58.256Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"packageCharges\": 500\n}",
-                "form": []
-            },
-            "tests": []
-        }
-    ]
+  "client": "Thunder Client",
+  "collectionName": "smart-travel",
+  "dateExported": "2023-10-21T12:35:29.495Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "_id": "9400d867-dfd3-4708-bc22-62c0bffa3c46",
+      "colId": "f7830c67-cb86-4499-a3fe-d2a6ba84302e",
+      "containerId": "",
+      "name": "Stripe Payment",
+      "url": "http://localhost:8080/api/payments/intent",
+      "method": "POST",
+      "sortNum": 10000,
+      "created": "2023-10-19T10:01:58.256Z",
+      "modified": "2023-10-19T10:01:58.256Z",
+      "headers": [],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"packageCharges\": 500\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "_id": "d65b242e-9048-4bf5-8db6-944b6a362eea",
+      "colId": "f7830c67-cb86-4499-a3fe-d2a6ba84302e",
+      "containerId": "",
+      "name": "Packages CRUD",
+      "url": "http://localhost:8080/api/packages/6533c0c22f985393e619339d",
+      "method": "DELETE",
+      "sortNum": 20000,
+      "created": "2023-10-21T12:16:11.585Z",
+      "modified": "2023-10-21T12:16:11.585Z",
+      "headers": [],
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"price\": 500,\n  \"title\": \"hello1\",\n  \"description\": \"1234hello\"\n}",
+        "form": []
+      },
+      "tests": []
+    }
+  ]
 }

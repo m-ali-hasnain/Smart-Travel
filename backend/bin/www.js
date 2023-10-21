@@ -3,17 +3,17 @@
 import app from "../app.js";
 import debug from "debug";
 import http from "http";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 const port = normalizePort(process.env.PORT);
 app.set("port", port);
 
 const server = http.createServer(app);
 
-server.listen(port, ()=>{
-  console.log(`smart-travel-backend: http://localhost:${port}/api/`)
+server.listen(port, () => {
+  console.log(`smart-travel-backend: http://localhost:${port}/api/`);
 });
 server.on("error", onError);
 server.on("listening", onListening);
@@ -60,4 +60,3 @@ function onListening() {
   const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
   debug("Listening on " + bind);
 }
-
