@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 export const connect = async () => {
   // Connecting to the database
   try {
-    console.log('DB URI: ', process.env.MONGO_URI)
+    console.log("DB URI: ", process.env.MONGO_URI);
     await mongoose.connect(process.env.MONGO_URI);
   } catch (error) {
     console.log("database connection failed. exiting now...");

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import { useParams } from "react-router-dom";
-// import blogData from "../assets/data/blogData.js";
-// import Helmet from "../components/Helmet/Helmet";
 import { Link } from "react-router-dom";
 import "../styles/packages-details.css";
 import Destination1 from "../assets/Destination1.png";
@@ -235,8 +233,8 @@ const PackageDetails = () => {
             ))}
           </Col>
           <PayButton />
-          {/* <ReactWhatsapp number="+923335568883" message="Hello World!!!" /> */}
-          <FloatingWhatsApp phoneNumber="+923335568883" chatMessage="Hello World!!!" messageDelay='2' accountName='AQ INNOVATIONS' />
+          {/* <ReactWhatsapp  /> */}
+          {/* <FloatingWhatsApp phoneNumber="+923335568883" chatMessage="Hello World!!!" messageDelay='2' accountName='AQ INNOVATIONS' /> */}
         </Row>
       </Container>
     </section>

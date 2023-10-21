@@ -1,8 +1,5 @@
 import { stripe, API_URL } from "../configs/stripe.js";
 
-
-
-
 export const createPayment = async (packageCharges) => {
   const price = packageCharges.packageCharges;
   const session = await stripe.checkout.sessions.create({
@@ -11,7 +8,7 @@ export const createPayment = async (packageCharges) => {
         price_data: {
           currency: "usd",
           product_data: {
-            name: "Tourist",
+            name: "Tourism Package",
           },
           unit_amount: price,
         },
@@ -24,4 +21,3 @@ export const createPayment = async (packageCharges) => {
   });
   return session.url;
 };
-

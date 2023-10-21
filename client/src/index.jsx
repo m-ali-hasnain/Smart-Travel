@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +12,8 @@ axios.defaults.baseURL = 'http://localhost:8080/api'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+     <BrowserRouter>
     <App />
+    </BrowserRouter>
   </React.StrictMode>,
 );

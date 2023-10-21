@@ -5,8 +5,7 @@ export const handleError = (error, res, next) => {
     res.status(statusCode).json({
       status: "error",
       message: message,
-      stack:
-        process.env.NODE_ENV === "development" ? error.stack : {},
+      stack: process.env.NODE_ENV === "development" ? error.stack : {},
     });
   } else {
     // If the error is not an instance of Error, create a new Error object
@@ -15,8 +14,7 @@ export const handleError = (error, res, next) => {
     res.status(statusCode).json({
       status: "error",
       message: message,
-      stack:
-        process.env.NODE_ENV === "development" ? errorObject.stack : {},
+      stack: process.env.NODE_ENV === "development" ? errorObject.stack : {},
     });
   }
   next(error); // You can cast the error to Error here
