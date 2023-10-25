@@ -9,6 +9,7 @@ import { packageRouter } from "./routes/package.js";
 import { paymentRouter } from "./routes/payment.js";
 import { authRouter } from "./routes/auth.js";
 import { handleError } from "./middleware/error.js";
+import { preflight } from "./middleware/preflight.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const app = express();
 // DB Connection
 connect();
 
+app.use(preflight)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
