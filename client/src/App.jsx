@@ -1,5 +1,5 @@
 import Layout from "../src/layout/layout";
-
+import React from "react";
 
 document.addEventListener('mousemove', e=> {
 
