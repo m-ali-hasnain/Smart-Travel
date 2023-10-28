@@ -15,6 +15,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { ReactWhatsapp } from "react-whatsapp";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import PayButton from "./strip/PayButton";
+import { Carousel } from "react-carousel-minimal";
 // import "../styles/blog-details.css";
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 const PackageDetails = () => {
@@ -99,6 +100,53 @@ const PackageDetails = () => {
       quote: ["Description", "Highlights", "Inclusions"],
     },
   ];
+  const data = [
+    {
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
+      caption: "San Francisco",
+    },
+    {
+      image:
+        "https://cdn.britannica.com/s:800x450,c:crop/35/204435-138-2F2B745A/Time-lapse-hyper-lapse-Isle-Skye-Scotland.jpg",
+      caption: "Scotland",
+    },
+    {
+      image:
+        "https://static2.tripoto.com/media/filter/tst/img/735873/TripDocument/1537686560_1537686557954.jpg",
+      caption: "Darjeeling",
+    },
+    {
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Palace_of_Fine_Arts_%2816794p%29.jpg/1200px-Palace_of_Fine_Arts_%2816794p%29.jpg",
+      caption: "San Francisco",
+    },
+    {
+      image:
+        "https://i.natgeofe.com/n/f7732389-a045-402c-bf39-cb4eda39e786/scotland_travel_4x3.jpg",
+      caption: "Scotland",
+    },
+    {
+      image:
+        "https://www.tusktravel.com/blog/wp-content/uploads/2020/07/Best-Time-to-Visit-Darjeeling-for-Honeymoon.jpg",
+      caption: "Darjeeling",
+    },
+    {
+      image:
+        "https://www.omm.com/~/media/images/site/locations/san_francisco_780x520px.ashx",
+      caption: "San Francisco",
+    },
+    {
+      image:
+        "https://images.ctfassets.net/bth3mlrehms2/6Ypj2Qd3m3jQk6ygmpsNAM/61d2f8cb9f939beed918971b9bc59bcd/Scotland.jpg?w=750&h=422&fl=progressive&q=50&fm=jpg",
+      caption: "Scotland",
+    },
+    {
+      image:
+        "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
+      caption: "Darjeeling",
+    },
+  ];
   const blog = blogData.find((blog) => blog.title === slug);
 
   useEffect(() => {
@@ -107,17 +155,6 @@ const PackageDetails = () => {
 
   const [clientSecret, setClientSecret] = useState("");
 
-  // useEffect(() => {
-  //   // Create PaymentIntent as soon as the page loads
-  //   fetch("/create-payment-intent", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setClientSecret(data.clientSecret));
-  // }, []);
-
   const appearance = {
     theme: "stripe",
   };
@@ -125,30 +162,62 @@ const PackageDetails = () => {
     clientSecret,
     appearance,
   };
+  const captionStyle = {
+    fontSize: "2em",
+    fontWeight: "bold",
+  };
+  const slideNumberStyle = {
+    fontSize: "20px",
+    fontWeight: "bold",
+  };
   return (
-    // <Helmet title={blog.title}>
     <section>
       <Container>
         <Row>
           <Col lg="7" md="7">
             <div className="blog__details">
-              <img src={blog.image} alt="" className="w-90" />
-              <h2 className="section__title mt-4">{blog.title}</h2>
+              {/* <img src={blog.image} alt="" className="w-90" /> */}
+              <Carousel
+                data={data}
+                time={2000}
+                width="850px"
+                height="500px"
+                captionStyle={captionStyle}
+                radius="10px"
+                slideNumber={true}
+                slideNumberStyle={slideNumberStyle}
+                captionPosition="bottom"
+                automatic={true}
+                dots={true}
+                pauseIconColor="white"
+                pauseIconSize="40px"
+                slideBackgroundColor="darkgrey"
+                slideImageFit="cover"
+                thumbnails={true}
+                thumbnailWidth="100px"
+                style={{
+                  textAlign: "center",
+                  maxWidth: "850px",
+                  maxHeight: "500px",
+                  margin: "40px auto",
+                }}
+              />
+              <h2 className="section__title mt-4 pt-12">{blog.title}</h2>
 
               <div
                 style={{ width: "600px" }}
                 className="blog__publisher align-items-center gap-4 mb-4"
               >
                 <span className="blog__author">
-                  <i class="ri-user-line"></i> {blog.subTitle}
+                  <i className="ri-user-line"></i> {blog.subTitle}
                 </span>
 
                 <span className=" d-flex align-items-center gap-1 section__description">
-                  <i class="ri-calendar-line"></i> {blog.cost}
+                  <i className="ri-calendar-line"></i> {blog.cost}
                 </span>
 
                 <span className=" d-flex align-items-center gap-1 section__description">
-                  <i class="ri-time-line"></i> {blog.duration}
+                  <i className="ri-time-line"></i> {blog.duration}
                 </span>
                 {blog.description.map((item, index) => (
                   <Container key={index}>
@@ -161,63 +230,10 @@ const PackageDetails = () => {
                   </Container>
                 ))}
               </div>
-
-              {/* <p >{blog.description}</p> */}
             </div>
-
-            {/* <div className="comment__list mt-5">
-                <h4 className="mb-5">3 Comments</h4>
-
-                <div className="single__comment d-flex gap-3">
-                  <img src={commentImg} alt="" />
-                  <div className="comment__content">
-                    <h6 className=" fw-bold">David Visa</h6>
-                    <p className="section__description mb-0">14 July, 2022</p>
-                    <p className="section__description">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Eos nobis totam eius laborum molestias itaque minima
-                      distinctio, quae velit tempore!
-                    </p>
-
-                    <span className="replay d-flex align-items-center gap-1">
-                      <i class="ri-reply-line"></i> Replay
-                    </span>
-                  </div>
-                </div>
-               <div className="leave__comment-form mt-5">
-                  <h4>Leave a Comment</h4>
-                  <p className="section__description">
-                    You must sign-in to make or comment a post
-                  </p>
-
-                  <Form>
-                    <FormGroup className=" d-flex gap-3">
-                      <Input type="text" placeholder="Full name" />
-                      <Input type="email" placeholder="Email" />
-                    </FormGroup>
-
-                    <FormGroup>
-                      <textarea
-                        rows="5"
-                        className="w-100 py-2 px-3"
-                        placeholder="Comment..."
-                      ></textarea>
-                    </FormGroup>
-
-                    <button className="btn comment__btn mt-3">
-                      Post a Comment
-                    </button>
-                  </Form>
-                </div>
-              </div>  */}
           </Col>
 
           <Col lg="5" md="5">
-            {/* {clientSecret && (
-              <Elements options={options} stripe={stripePromise}>
-                <CheckoutForm />
-              </Elements>
-            )} */}
             <div className="recent__post mb-4">
               <h5 className=" fw-bold">Recent Posts</h5>
             </div>
@@ -245,7 +261,6 @@ const PackageDetails = () => {
         </Row>
       </Container>
     </section>
-    // </Helmet>
   );
 };
 

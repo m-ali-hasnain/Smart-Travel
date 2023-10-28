@@ -19,7 +19,7 @@ export default function App() {
       origin: "top",
       distance: "80px",
       duration: 2000,
-      reset: true,
+      reset: false,
     });
     sr.reveal(
       `
@@ -38,21 +38,15 @@ export default function App() {
   }, []);
   return (
     // <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/packages" element={<Packages />} />
-        <Route path="/packages/:slug" element={<PackagesDetails />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/admin/signin" element={<Signin />} />
-    
-        
-
-        
-        
-
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/packages" element={<Packages />} />
+      <Route path="/packages/:slug" element={<PackagesDetails />} />
+      <Route path="/reviews" element={<Reviews />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/admin/signin" element={<Signin />} />
+    </Routes>
     // </BrowserRouter>
   );
 }
