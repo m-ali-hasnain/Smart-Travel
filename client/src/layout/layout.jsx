@@ -8,6 +8,7 @@ import ManagePacakes from "../components/ManagePackages";
 import ManageOrders from "../components/Order";
 import AddPackages from "../components/AddPackages";
 import ManageInactivePackages from "../components/ManageInactivePackages";
+import EditPackageDetails from "../components/EditPackageDetails";
 const Layout = () => {
   if (!localStorage.getItem('accessToken')) {
     return (
@@ -30,6 +31,7 @@ const Layout = () => {
           <Route path="/admin/manageOrders" element={<ManageOrders />} />
           <Route path="/admin/addpackages" element={<AddPackages />} />
           <Route path="/admin/manageinactivepackages" element={<ManageInactivePackages />} />
+          <Route path="/admin/editPackageDetails" element={<EditPackageDetails />} />
         </Routes>
       </Fragment>
     );

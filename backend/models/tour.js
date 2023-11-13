@@ -1,31 +1,19 @@
 import { Schema, model } from "mongoose";
-
-const packageSchema = new Schema({
+const tourSchema = new Schema({
   title: {
     type: String,
+    required: true,
+    unique: false,
+  },
+  count: {
+    type: Number,
     required: true,
   },
   description: {
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  state: {
-    type: String,
-    required: true,
-  },
-  zip: {
-    type: Number,
-    required: true,
-  },
-  country: {
+  price: {
     type: String,
     required: true,
   },
@@ -37,18 +25,26 @@ const packageSchema = new Schema({
     type: [],
     required: true,
   },
-  totalCount: {
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  zip: {
     type: Number,
     required: true,
   },
-  price: {
-    type: Number,
-    required: true,
-  },
-  active: {
-    type: Boolean,
+  milestone: {
+    type: [],
     required: true,
   },
 });
 
-export const Package = model("package", packageSchema);
+export const Tour = model("tour", tourSchema);
