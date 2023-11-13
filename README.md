@@ -104,5 +104,4 @@ We welcome contributions to the Smart Travel Website. If you would like to contr
 ## License
 This project is licensed under the [MIT License](LICENSE), which means you are free to use and modify the code according to your needs.
 
-Thank you for choosing the Smart Travel Website. We hope you find it a valuable addition to your travel business or a convenient platform for booking your next adventure. If you have any questions or encounter any issues, please don't hesitate to contact us. Enjoy your smart travels!
-
+Thank you for choosing the Smart Travel Website. We hope you find it a valuable addition to your travel business or a convenient platform for booking your next adventure. If you have any questions or encounter any issues, please don't hesitate to contact us. Enjoy your smart travels! 

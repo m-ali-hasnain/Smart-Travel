@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -10,7 +11,7 @@ import CollectionsIcon from "@mui/icons-material/Collections";
 import Button from "@mui/material/Button";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import SendIcon from "@mui/icons-material/Send";
-export default function AddressForm(
+export default function AddressForm({
   title,
   setZip,
   zip,
@@ -33,7 +34,11 @@ export default function AddressForm(
   imageFileUrl,
   setVideoFileName,
   videoFileName,
-) {
+  totalCount,
+  setTotalCount,
+  price,
+  setPrice
+}) {
   const handleUploadImage = () => {
     let widget = window.cloudinary.createUploadWidget(
       {
@@ -119,7 +124,12 @@ export default function AddressForm(
                   console.log("yesss", item);
                   return imageFileName ? (
                     <div className="flex justify-between ">
-                      <a className="text-black" href={imageFileUrl[index]}>
+                      <a
+                        className="text-black"
+                        target="_blank"
+                        href={imageFileUrl[index]}
+                        rel="noreferrer"
+                      >
                         <p>Uploaded Images: {item}</p>
                       </a>
                       <div style={{ marginTop: "-8px" }}>
@@ -163,7 +173,12 @@ export default function AddressForm(
                   console.log("yesss", item);
                   return videoFileName ? (
                     <div className="flex justify-between ">
-                      <a className="text-black" href={videoFileUrl[index]}>
+                      <a
+                        className="text-black"
+                        target="_blank"
+                        href={videoFileUrl[index]}
+                        rel="noreferrer"
+                      >
                         <p>Uploaded Video: {item}</p>
                       </a>
                       <div style={{ marginTop: "-8px" }}>
@@ -209,9 +224,9 @@ export default function AddressForm(
             fullWidth
             autoComplete="description"
             variant="standard"
-            value={title}
+            value={desc}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setDesc(e.target.value);
             }}
           />
         </Grid>
@@ -225,9 +240,9 @@ export default function AddressForm(
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
-            value={title}
+            value={address}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setAddress(e.target.value);
             }}
           />
         </Grid>
@@ -242,9 +257,9 @@ export default function AddressForm(
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
-            value={title}
+            value={city}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setCity(e.target.value);
             }}
           />
         </Grid>
@@ -256,9 +271,9 @@ export default function AddressForm(
             label="State/Province/Region"
             fullWidth
             variant="standard"
-            value={title}
+            value={state}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setState(e.target.value);
             }}
           />
         </Grid>
@@ -272,9 +287,9 @@ export default function AddressForm(
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
-            value={title}
+            value={zip}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setZip(e.target.value);
             }}
           />
         </Grid>
@@ -288,12 +303,59 @@ export default function AddressForm(
             fullWidth
             autoComplete="shipping country"
             variant="standard"
-            value={title}
+            value={country}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setCountry(e.target.value);
             }}
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            multiline
+            id="price"
+            name="price"
+            label="Price"
+            fullWidth
+            autoComplete="price"
+            variant="standard"
+            value={price}
+            onChange={(e) => {
+              setPrice(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            multiline
+            id="totalTickets "
+            name="totalTickets "
+            label="Total Tickets"
+            fullWidth
+            autoComplete="totaltickets"
+            variant="standard"
+            value={totalCount}
+            onChange={(e) => {
+              setTotalCount(e.target.value);
+            }}
+          />
+        </Grid>
+        {/* <Grid item xs={12}>
+          <TextField
+            required
+            id="expDate"
+            helperText="Due Date"
+            fullWidth
+            autoComplete="job-exp"
+            variant="standard"
+            type="datetime-local"
+            value={DueDate}
+            onChange={(e) => {
+              setDueDate(e.target.value);
+            }}
+          />
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );

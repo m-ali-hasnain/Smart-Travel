@@ -3,5 +3,4 @@ export const corsOptions = {
   methods: ["GET", "POST", "DELETE"],
   allowedHeaders: ["Content-Type", "authorization"],
   credentials: true, // If you need to allow credentials (cookies, headers, etc.)
-  
 };
