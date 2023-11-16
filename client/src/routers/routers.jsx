@@ -11,6 +11,7 @@ import Home from "../components/home";
 import PackagesDetails from "../components/packageDetail";
 import Contact from "../components/Contact";
 import Signin from "../components/Login";
+import SuccessPayment from "../components/strip/CheckOutSucces";
 
 // import Login from "../components/login";
 export default function App() {
@@ -46,6 +47,9 @@ export default function App() {
       <Route path="/reviews" element={<Reviews />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/admin/signin" element={<Signin />} />
+      <Route path="/payment/confirm" element={<SuccessPayment />} />
+
+      
     </Routes>
     // </BrowserRouter>
   );

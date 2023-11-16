@@ -8,8 +8,8 @@ import {
 } from "../controllers/order.js";
 const router = express.Router();
 
-router.get("/", getOrders);
-router.post("/", createOrder);
+router.get("/get", getOrders);
+router.post("/create", createOrder);
 router.get("/:orderId", getOrderById);
 router.post("/:orderId", updateOrderById);
 router.delete("/:orderId", deleteOrderById);
