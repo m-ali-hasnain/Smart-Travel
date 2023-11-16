@@ -156,20 +156,25 @@ const PackageDetails = () => {
   };
   const handleCheckout = (e) => {
     e.preventDefault();
-    if (document.getElementById('user_name').value == '' || document.getElementById('user_email').value == '' || document.getElementById('user_phone').value == '' || document.getElementById('message').value == '') { toast("Invalid Input"); }
+    if (document.getElementById('user_name').value == '' || document.getElementById('user_email').value == '' || document.getElementById('user_phone').value == '' || document.getElementById('pickup_location').value == '' || document.getElementById('total_persons').value == '' || document.getElementById('date_of_tour').value == '' || document.getElementById('pickup-time').value == '') { toast("Invalid Input"); }
     else {
       console.log("check")
       axios
         .post(`/payments/intent`, {
-          packageCharges: 100
+          packageCharges: packageObject.price * document.getElementById('total_persons').value
         },
           // {authorization:}
         )
         .then((response) => {
           console.log("check", response.data)
+          localStorage.setItem('orderDetails', JSON.stringify({ "fullname": document.getElementById('user_name').value, "email": document.getElementById('user_email').value, "phone": document.getElementById('user_phone').value, "pickuplocation": document.getElementById('pickup_location').value, "totalpersons": document.getElementById('total_persons').value, "dateoftour": document.getElementById('date_of_tour').value, "pickuptime": document.getElementById('pickup-time').value, "totalprice": packageObject.price * document.getElementById('total_persons').value, "packageObject": packageObject, "stripeSessionId": response.data.sessionID }))
+
           if (response.data) {
+
             console.log(response.data)
-            window.location.href = response.data;
+
+
+            window.location.href = response.data.sessionURL;
           }
         })
         .catch((err) => console.log(err.message));
@@ -310,15 +315,27 @@ const PackageDetails = () => {
               </div>
             ))}
           </Col>
-          <Col style={{marginBottom:"100px"}} lg="5" md="5">
+          <Col style={{ marginBottom: "100px" }} lg="5" md="5">
             <div>
               <ToastContainer />
             </div>
             <StyledContactForm>
               <form ref={form} onSubmit={handleCheckout}>
                 <FormGroup className="contact__form">
-                  <label >Name</label>
+                  <label >Full Name</label>
                   <input type="text" name="user_name" id='user_name' />
+                </FormGroup>
+                <FormGroup className="contact__form">
+                  <label >Number Of Persons</label>
+                  <input type="number" name="total_persons" id='total_persons' />
+                </FormGroup>
+                <FormGroup className="contact__form">
+                  <label >Date of Tour</label>
+                  <input type="datetime-local" name="date_of_tour" id='date_of_tour' />
+                </FormGroup>
+                <FormGroup className="contact__form">
+                  <label >Pickup Time</label>
+                  <input type="time" name="pickup-time" id='pickup-time' />
                 </FormGroup>
                 <FormGroup className="contact__form">
                   <label>Email</label>
@@ -328,10 +345,10 @@ const PackageDetails = () => {
                   <label>Phone</label>
                   <input type="number" name="user_phone" id='user_phone' />
                 </FormGroup>
-                <label>Message</label>
-                <textarea name="message" rows="5"
-                  id='message'
-                  placeholder="Message"
+                <label>Pickup Location</label>
+                <textarea name="pickup_location" rows="5"
+                  id='pickup_location'
+                  placeholder="Pickup Location"
                   className="textarea" />
                 {/* <PayButton /> */}
                 <input className=" contact__btn" type="submit" value="Checkout" />

@@ -5,6 +5,10 @@ const orderSchema = new Schema({
     enum: ["package", "tour", "ticket"],
     required: true,
   },
+  fullName: {
+    type: String,
+    required: true,
+  },
   tourName: {
     type: String,
     required: true,
@@ -26,7 +30,7 @@ const orderSchema = new Schema({
     required: true,
   },
   pickupTime: {
-    type: Date,
+    type: String,
     required: true,
   },
   pickupLocation: {
@@ -34,7 +38,7 @@ const orderSchema = new Schema({
     required: true,
   },
   stripeSessionId: {
-    type: Schema.Types.ObjectId,
+    type: String,
     required: true,
   },
 });

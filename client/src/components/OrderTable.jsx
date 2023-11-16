@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,7 +21,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-
+import axios from "axios";
 function createData(id, name, calories, fat, carbs, protein) {
   return {
     id,
@@ -33,21 +33,22 @@ function createData(id, name, calories, fat, carbs, protein) {
   };
 }
 
-const rows = [
-  createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
-  createData(2, 'Donut', 452, 25.0, 51, 4.9),
-  createData(3, 'Eclair', 262, 16.0, 24, 6.0),
-  createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
-  createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
-  createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
-  createData(9, 'KitKat', 518, 26.0, 65, 7.0),
-  createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
-  createData(11, 'Marshmallow', 318, 0, 81, 2.0),
-  createData(12, 'Nougat', 360, 19.0, 9, 37.0),
-  createData(13, 'Oreo', 437, 18.0, 63, 4.0),
-];
+
+// const rows = [
+//   createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
+//   createData(2, 'Donut', 452, 25.0, 51, 4.9),
+//   createData(3, 'Eclair', 262, 16.0, 24, 6.0),
+//   createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
+//   createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
+//   createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
+//   createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
+//   createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
+//   createData(9, 'KitKat', 518, 26.0, 65, 7.0),
+//   createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
+//   createData(11, 'Marshmallow', 318, 0, 81, 2.0),
+//   createData(12, 'Nougat', 360, 19.0, 9, 37.0),
+//   createData(13, 'Oreo', 437, 18.0, 63, 4.0),
+// ];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -83,38 +84,70 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'No',
     numeric: false,
     disablePadding: true,
-    label: 'Order Image',
+    label: 'No',
   },
   {
-    id: 'calories',
+    id: 'orderType',
     numeric: true,
     disablePadding: false,
-    label: 'Description',
+    label: 'Order Type',
   },
   {
-    id: 'fat',
+    id: 'tourName',
     numeric: true,
     disablePadding: false,
-    label: 'Price',
+    label: 'Tour Name',
   },
   {
-    id: 'carbs',
+    id: 'fullName',
     numeric: true,
     disablePadding: false,
-    label: 'Tickets',
+    label: 'Full Name',
   },
   {
-    id: 'protein',
+    id: 'email',
     numeric: true,
     disablePadding: false,
-    label: 'Client Name',
+    label: 'Email',
+  },
+  {
+    id: 'phone',
+    numeric: true,
+    disablePadding: false,
+    label: 'Phone',
+  },
+  {
+    id: 'totalPersons',
+    numeric: true,
+    disablePadding: false,
+    label: 'Total Persons',
+  },
+  {
+    id: 'tourDate',
+    numeric: true,
+    disablePadding: false,
+    label: 'Tour Date',
+  },
+  {
+    id: 'pickupTime',
+    numeric: true,
+    disablePadding: false,
+    label: 'Pickup Time',
+  },
+  {
+    id: 'pickupLocation',
+    numeric: true,
+    disablePadding: false,
+    label: 'Pickup Loaction',
   },
 ];
 
 function EnhancedTableHead(props) {
+
+
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {
@@ -232,7 +265,26 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [orderDetails, setOrderdetails] = useState([]);
+  useEffect(() => {
+    const URL = "http://localhost:8080/api/orders/get";
+    axios
+      .get(URL)
+      .then((response) => {
+        console.log("Response is ", response.data);
+        setOrderdetails(response.data)
+        // window.location.reload()
+      })
+      .catch((error) => {
+        // event.preventDefault();
+      });
+  }, []);
 
+  let rows = []
+  orderDetails.map((item, index) => {
+    rows.push({ No: index + 1, orderType: item.orderType, tourName: item.tourName, fullName: item.fullName, email: item.email, phone: item.phone, totalPersons: item.totalPersons, tourDate: item.tourDate, pickupTime: item.pickupTime, pickupLocation: item.pickupLocation })
+
+  })
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -344,12 +396,17 @@ export default function EnhancedTable() {
                       scope="row"
                       padding="none"
                     >
-                      {row.name}
+                      {row.id}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="right">{row.orderType}</TableCell>
+                    <TableCell align="right">{row.tourName}</TableCell>
+                    <TableCell align="right">{row.fullName}</TableCell>
+                    <TableCell align="right">{row.email}</TableCell>
+                    <TableCell align="right">{row.phone}</TableCell>
+                    <TableCell align="right">{row.totalPersons}</TableCell>
+                    <TableCell align="right">{row.tourDate}</TableCell>
+                    <TableCell align="right">{row.pickupTime}</TableCell>
+                    <TableCell align="right">{row.pickupLocation}</TableCell>
                   </TableRow>
                 );
               })}

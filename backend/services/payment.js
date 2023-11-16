@@ -17,7 +17,7 @@ export const createPayment = async (packageCharges) => {
       },
     ],
     mode: "payment",
-    success_url: `${API_URL}/client?success=true`,
+    success_url: `${API_URL}/payment/confirm`,
     cancel_url: `${API_URL}/client?canceled=true`,
   });
 
